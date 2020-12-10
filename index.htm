@@ -1,0 +1,851 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Untitled</title>
+    <meta name="viewport" content="width=device-width,maximum-scale=1,user-scalable=no">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        #signin,
+        #sender1,
+        #sender2,
+        #userpage,
+        #trans,
+        #login,
+        #load {
+            display: none;
+        }
+
+        body {
+            background: #a0cbe3;
+            height: 98vh;
+            background-repeat: no-repeat;
+            background-size: auto;
+            overflow: hidden;
+        }
+
+        #home {
+            position: absolute;
+            width: 95%;
+            height: 90%;
+        }
+
+        #tit {
+            position: absolute;
+            top: 10%;
+            left: 25vw;
+            height: 42px;
+            width: 175px;
+            border-radius: 50px;
+            background: #a0cbe3;
+            box-shadow: 10px 10px 30px #88adc1,
+            -10px -10px 30px #b8e9ff;
+            text-align: center;
+            font-size: 15px;
+            font-weight: bolder;
+            padding: 5px;
+            color: #000000;
+        }
+
+        #container {
+            position: absolute;
+            height: 55vh;
+            width: 80%;
+            font-size: 16px;
+            top: 175px;
+            left: 5%;
+            border-radius: 50px;
+            background: #a0cbe3;
+            box-shadow: 20px 20px 60px #88adc1,
+            -20px -20px 60px #b8e9ff;
+            padding: 10px;
+            -ms-transform: translate(5%);
+            transform: translate(5%);
+        }
+
+        #signin1 {
+            position: absolute;
+            left: 10%;
+            color: #05668d;
+        }
+
+        #login1 {
+            position: absolute;
+            right: 10%;
+            color: #05668d;
+        }
+
+        #login {
+            position: absolute;
+            width: 80vw;
+            padding: 10px;
+        }
+
+        #lusername,
+        #lpswd,
+        #susername,
+        #spswd,
+        #saccno,
+        #sname,
+        #samnt {
+            color: #000000;
+            font-size: medium;
+            width: 200px;
+            height: 20px;
+            padding-left: 10px;
+            outline: none;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #abd9f3, #90b7cc);
+            box-shadow: 5px 5px 8px #9ac3da,
+            -5px -5px 8px #a6d3ec;
+        }
+
+        #blogin,
+        #send {
+            position: absolute;
+            top: 250px;
+            left: 50%;
+            border-radius: 20px;
+            padding: 10px;
+            width: 75px;
+            outline: none;
+            background: #023e8a;
+            color: #ffffff;
+            font-family: Georgia, serif;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        #send {
+            top: 75vh;
+        }
+
+        #signin {
+            position: absolute;
+            width: 80%;
+            padding: 20px;
+            height: 650px;
+        }
+
+        #bsignin {
+            position: absolute;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            border-radius: 20px;
+            padding: 10px;
+            width: 75px;
+            outline: none;
+            background: #023e8a;
+            color: #ffffff;
+            font-family: Georgia, serif;
+        }
+
+        #loader {
+            position: absolute;
+            left: 60%;
+            -ms-transform: translate(-45%, -45%);
+            transform: translate(-45%, -45%);
+            top: 60%;
+            width: 40px;
+            height: 40px;
+            margin: -75px 0 0 -75px;
+            border: 10px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 10px solid #3498db;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #load {
+            position: absolute;
+            top: 50%;
+            width: 90%;
+        }
+
+        #sender1,
+        #sender2,
+        .userpage,
+        .trans {
+            position: absolute;
+            height: 95%;
+            width: 90%;
+        }
+
+        #circle {
+            position: absolute;
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            align-items: center;
+            background: #ffffff;
+            left: 50%;
+            -ms-transform: translate(-50%);
+            transform: translate(-50%);
+            box-shadow: 0 0 5px #ff0000, 0 0 10px #0000ff;
+        }
+
+        #uamnt {
+            position: absolute;
+            top: 32px;
+            left: 50%;
+            -ms-transform: translate(-50%);
+            transform: translate(-50%);
+        }
+
+        .transac1,
+        #backuser {
+            position: absolute;
+            top: 50px;
+            left: 95%;
+            cursor: pointer;
+        }
+
+        #backuser {
+            left: 85vw;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            background: rgba(0, 0, 0, .9);
+            overflow-x: hidden;
+            transition: .5s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: .5s;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            font-size: 36px;
+            margin-right: 50px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+
+        #ltrans li {
+            border: 2px solid #000000;
+            margin-top: -1px;
+            background-color: #f6f6f6;
+            padding: 3px;
+            font-style: italic;
+            font-size: 13px;
+            color: black;
+            width: 95%;
+            border-radius: 5px;
+            word-wrap: break-word;
+            height: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #scrollbox {
+            position: absolute;
+            top: 250px;
+            width: 130px;
+            overflow: auto;
+            height: 100px;
+            border: 2px solid #000000;
+            left: 35%;
+            align-content: center;
+        }
+
+        #sugg {
+            position: absolute;
+            top: 200px;
+            left: 35%;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        #names {
+            position: relative;
+            margin: 2px;
+            display: none;
+            width: 100px;
+            padding: 2px;
+        }
+
+        #names li {
+            border: 2px solid #000000;
+            background-color: #f6f6f6;
+            padding: 2px;
+            color: black;
+            width: 100px;
+            height: 25px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #pay1,
+        #pay2 {
+            position: absolute;
+            top: 98px;
+            left: 65%;
+            border-radius: 20px;
+            padding: 5px;
+            width: 70px;
+            outline: none;
+            background: #023e8a;
+            color: #ffffff;
+            font-family: Georgia, serif;
+        }
+
+        #search,
+        #payamnt {
+            position: absolute;
+            top: 100px;
+            left: 30%;
+            border-radius: 20px;
+            border: 1px solid #06d6a0;
+            color: #000000;
+            font-size: medium;
+            width: 80px;
+            height: 20px;
+            padding-left: 10px;
+            outline: none;
+            box-shadow: 0 0 5px #ff0000, 0 0 10px #0000ff;
+        }
+
+        #cancel {
+            position: absolute;
+            top: 250px;
+            left: 45%;
+        }
+
+        #s2alert {
+            position: absolute;
+            top: 200px;
+            left: 30%;
+        }
+
+        #loginbox,
+        #signinbox {
+            width: 75vw;
+            height: 350px;
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            transform: translate(-45%, 25%);
+            border-radius: 50px;
+            background: #a0cbe3;
+            box-shadow: 20px 20px 60px #88adc1,
+            -20px -20px 60px #b8e9ff;
+        }
+
+        #signinbox {
+            height: 75vh;
+            overflow: auto;
+            transform: translate(-45%, -10%);
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        #signinbox::-webkit-scrollbar {
+            display: none;
+        }
+
+        #logincontent,
+        #signincontent {
+            position: absolute;
+            left: 10vw;
+            top: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <article id="home">
+        <p id="tit" style="font-family: 'Comic Sans MS', cursive, sans-serif">Just Pay<br>&nbsp;&nbsp;&nbsp;-Go cashless...</p>
+        <div id="container">
+            <ul>
+                <li>JustPay is a web payment app where you can pay without cash</li>
+                <li> Inspired from "PayPal" by "Elonmusk" and learned from "Agilan" </li>
+                <li>Any bug issues and improvisations are most welcome</li>
+                <li>Made with lots of love and efforts please don't spoil it</li>
+                <li>All amounts,accounts and transcations are JFF.Hence safe to create your account</li>
+            </ul>
+            <p id="login1" onclick="login1() "><u><b>login</b></u></p>
+            <p id="signin1" onclick="signin1()"><u><b>signin</b></u></p>
+        </div>
+    </article>
+    <article id="login">
+        <h1>
+            <p style="text-align: center; font-family: 'Times New Roman', Times, serif;font-size:20px"><b>LOGIN</b></p>
+        </h1>
+        <article id="loginbox">
+            <article id="logincontent">
+                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Username:</p>
+                <input id="lusername" placeholder="username" onfocus="highlight(this)" onblur="regular(this)">
+                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Password:</p>
+                <input id="lpswd" type="password" placeholder="password" onfocus="highlight(this)" onblur="regular(this)"><br>
+                <p id="lalert" style="font-weight: bold; color: red"></p>
+                <button id="blogin" onclick="login()"><b>Login</b></button>
+            </article>
+        </article>
+    </article>
+    <article id="signin">
+        <p style="text-align: center; font-family: 'Times New Roman', Times, serif"><b>SIGN UP</b></p>
+        <article id="signinbox">
+            <article id="signincontent">
+                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Username:</p>
+                <input id="susername" placeholder="username" onfocus="highlight(this)" onblur="regular(this)">
+                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Name:</p>
+                <input id="sname" placeholder="name" onfocus="highlight(this)" onblur="regular(this)">
+                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Account Number:</p>
+                <input id="saccno" type="number" placeholder="accno" onfocus="highlight(this)" onblur="regular(this)">
+                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Amount:</p>
+                <input id="samnt" type="number" placeholder="amnt" onfocus="highlight(this)" onblur="regular(this)">
+                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Password:</p>
+                <input id="spswd" type="password" placeholder="password" onfocus="highlight(this)" onblur="regular(this)">
+                <p id="salert" style="font-weight: bold; color: red"></p><br>
+                <button id="bsignin" onclick="signin()"><b>Signin</b></button>
+            </article>
+        </article>
+    </article>
+    <article id="userpage" class="userpage"><br>
+        <b><h1><p id="uname" style="text-align: center; font-family: Arial, Helvetica, sans-serif"></p></h1></b>
+        <br><br>
+        <p style="text-align: center"><b>Your Wallet</b></p>
+        <div id="circle">
+            <p id="uamnt" style="font-size: 30px;text-align: center"></p>
+        </div>
+        <button id="send" onclick="send()">Pay</button>
+        <div id="transac1" class="transac1" style="font-size:30px" onclick="openNav()">&#9776;
+        </div>
+    </article>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a onclick="transac(),closeNav()">Transactions</a>
+        <a onclick="message(),closeNav()">Message</a>
+        <a onclick="logout(),closeNav()">Logout</a>
+        <br><br><br>
+        <a>Done by Sundar</a>
+    </div>
+    <article id="trans"> <br><br>
+        <h1>
+            <p style="text-align: center"><b>Transaction History</b>
+                <div id="backuser" style="font-size:30px" onclick="backuser()">&#8594;</div>
+            </p>
+        </h1> <br>
+        <p id="info" style="text-align: center">
+            <ul id="ltrans" style=" list-style-type: none;">
+            </ul>
+        </p>
+    </article>
+    <article id="sender1"><br>
+        <h1>
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; text-align: center">Search For Recipients </p>
+        </h1>
+        <input id="search" onkeyup="filter()" placeholder="search">
+        <button id="pay1" onclick="pay1()">proceed</button>
+        <p id="sugg">Suggested Users:</p>
+        <div id="scrollbox">
+            <ul id="names" style=" list-style-type: none;">
+            </ul>
+        </div>
+    </article>
+    <article id="sender2">
+        <input id="payamnt" placeholder="Amount" type="number">
+        <button id="pay2" onclick="pay2()">pay</button><br>
+        <p id="s2alert" style="text-decoration: underline ;font-weight: bold; color: red"></p>
+        <p id="cancel" onclick="cancel()" style="text-decoration: underline ;font-weight: bold; color: red"> &#10008;cancel</p>
+    </article>
+    <article id="load">
+        <div id="loader"></div>
+    </article>
+</body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyBw5FtqM38rXJKXiDjkVeR0BfQR1z_8Orc",
+        authDomain: "trial-8173b.firebaseapp.com",
+        databaseURL: "https://trial-8173b.firebaseio.com",
+        projectId: "trial-8173b",
+        storageBucket: "trial-8173b.appspot.com",
+        messagingSenderId: "198077964720",
+        appId: "1:198077964720:web:75e1f8b3b049865d03f675"
+    };
+
+
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+</script>
+<script>
+    var db = firebase.database();
+    var res, trans1, trans2, trans;
+
+    function login1() {
+        document.getElementById("login").style.display = "block";
+        document.getElementById("home").style.display = "none";
+    }
+
+    function signin1() {
+        document.getElementById("signin").style.display = "block";
+        document.getElementById("home").style.display = "none";
+    }
+
+
+    function signin() {
+        var name = document.getElementById("sname").value;
+        var accno = document.getElementById("saccno").value;
+        var amnt = parseInt(document.getElementById("samnt").value);
+        var uname = document.getElementById("susername").value;
+        var pswd = document.getElementById("spswd").value;
+        var err = 0;
+        if (accno.length < 1 || name.length < 1 || amnt.length < 1 || uname.length < 1) {
+            document.getElementById("salert").innerText = "Please fill all the fields";
+            err = 1;
+        }
+        db.ref("users").once('value', function(s) {
+            if (s.hasChild(uname)) {
+                document.getElementById("salert").innerHTML = "Username already exists";
+                err = 1;
+            }
+            if (pswd.length <= 5) {
+                document.getElementById("salert").innerHTML = "Use a strong password";
+                err = 1;
+            }
+
+            if (parseInt(amnt) > 50000) {
+                document.getElementById("salert").innerText = "Bulk amount can't be deposited online ";
+                err = 1;
+            }
+
+            if (err == 0) {
+                db.ref('users/' + uname).set({
+                    name: name,
+                    accno: accno,
+                    pswd: pswd,
+                    bal: amnt,
+                    trans: 0,
+
+                });
+
+                load();
+                db.ref("users/" + uname + "/bal").on("value", function(s) {
+                    document.getElementById("uamnt").innerHTML = s.val();
+                    document.getElementById("uname").innerHTML = "Welcome " + uname;
+                });
+                db.ref("users/" + uname + "/trans").on("value", function(s) {
+                    trans1 = parseInt(s.val());
+                });
+
+
+
+            }
+        });
+    }
+
+
+
+    function login() {
+        var pswd = document.getElementById("lpswd").value;
+        var uname = document.getElementById("lusername").value;
+        db.ref("users/" + uname + "/pswd").on("value", function(s) {
+            res = s.val();
+        });
+        setTimeout(function() {
+            if (pswd == res) {
+                load();
+
+                db.ref("users/" + uname + "/bal").on("value", function(s) {
+                    document.getElementById("uamnt").innerHTML = s.val();
+                    document.getElementById("uname").innerHTML = "Welcome " + uname;
+
+                });
+                db.ref("users/" + uname + "/trans").on("value", function(s) {
+                    trans2 = parseInt(s.val());
+                });
+            } else
+                document.getElementById("lalert").innerHTML = "Incorrect username or password";
+        }, 1000);
+    }
+
+    function send() {
+        document.getElementById("userpage").style.display = "none";
+        document.getElementById("sender1").style.display = "block";
+        document.getElementById("names").innerHTML = "";
+        //looping through users
+        var query = db.ref("users").orderByKey();
+        query.once("value")
+            .then(function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+
+                    var key = childSnapshot.key;
+                    var x = document.createElement("li");
+                    var t = document.createTextNode(key);
+                    x.appendChild(t);
+                    document.getElementById("names").appendChild(x);
+                });
+            });
+    }
+    //filtering search results
+    function filter() {
+
+        var input, filter, li, i, txt;
+        input = document.getElementById("search");
+        filter = input.value.toUpperCase();
+        li = document.getElementById("names").getElementsByTagName("li");
+
+        for (i = 0; i < li.length; i++) {
+            document.getElementById("names").style.display = "block";
+            txt = li[i].textContent || li[i].innerText;
+            if (txt.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "block";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+    var ubal, pbal, uname, pname, utrans, ptrans, uer;
+
+    //getting recipient username
+    function pay1() {
+        uer = 1;
+        uname = document.getElementById("lusername").value || document.getElementById("susername").value;
+        pname = document.getElementById("search").value;
+        if (uname == pname) {
+            swal({
+                title: "Ooops!!",
+                text: "Sender and receiver can't be the same",
+                icon: "warning",
+                button: "ok",
+            });
+            return 0;
+        }
+        document.getElementById("s2alert").innerHTML = "";
+        db.ref("users").once('value', function(s) {
+            if (!s.hasChild(pname)) {
+
+                uer = 0;
+            }
+        });
+
+
+
+        document.getElementById("sender1").style.display = "none";
+        document.getElementById("sender2").style.display = "block";
+        db.ref("users/" + uname + "/bal").on("value", function(s) {
+            ubal = parseInt(s.val());
+        });
+        db.ref("users/" + pname + "/bal").on("value", function(s) {
+            pbal = parseInt(s.val());
+        });
+        db.ref("users/" + uname + "/trans").on("value", function(s) {
+            utrans = parseInt(s.val());
+        });
+        db.ref("users/" + pname + "/trans").on("value", function(s) {
+            ptrans = parseInt(s.val());
+        });
+
+
+    }
+
+
+    //paying function
+    function pay2() {
+
+
+        var pamnt = document.getElementById("payamnt").value;
+        var amnt = parseInt(pamnt);
+        ubal = ubal - amnt;
+        pbal = pbal + amnt;
+
+        var ukey = "trans" + utrans;
+        var pkey = "trans" + ptrans;
+        var d = new Date();
+        var date = d.toDateString();
+
+        if (uer == 0)
+            document.getElementById("s2alert").innerHTML = "No User Found";
+
+
+        else if (ubal < 10)
+            document.getElementById("s2alert").innerHTML = "Need Minimum Balance";
+
+        else {
+
+            setTimeout(function() {
+                db.ref('users/' + uname).update({
+
+                    bal: ubal,
+                    [ukey]: " you gave Rs" + amnt + " to " + pname + " on " + date,
+                    trans: parseInt(utrans + 1),
+                });
+                db.ref('users/' + pname).update({
+
+                    bal: pbal,
+                    [pkey]: uname + " gave you Rs" + amnt + " on " + date,
+                    trans: parseInt(ptrans + 1),
+                });
+            }, 1000);
+            success();
+
+        }
+
+
+
+    }
+
+
+    //writing transaction history
+
+    function transac() {
+
+        document.getElementById("userpage").style.display = "none";
+        document.getElementById("trans").style.display = "block";
+
+
+        var i, j, key;
+        var uname = document.getElementById("lusername").value || document.getElementById("susername").value;
+        document.getElementById("ltrans").innerHTML = "";
+        document.getElementById("info").innerHTML = "";
+
+        trans = trans1 || trans2;
+        if (trans > 0) {
+            for (i = trans - 1, j = 1; i >= 0 && j < 11; i--, j++) {
+
+                db.ref("users/" + uname + "/trans" + i).on("value", function(s) {
+                    key = (s.val());
+                    var x = document.createElement("li");
+                    var t = document.createTextNode(key);
+                    x.appendChild(t);
+                    document.getElementById("ltrans").appendChild(x);
+                });
+
+
+            }
+        }
+        if (trans == 0) {
+            document.getElementById("info").innerHTML = "no transactions available";
+        }
+
+    }
+
+    //back to userpage
+    function backuser() {
+        document.getElementById("userpage").style.display = "block";
+        document.getElementById("trans").style.display = "none";
+
+    }
+
+
+    //loader function
+    function load() {
+
+        document.getElementById("load").style.display = "block";
+        document.getElementById("login").style.filter = "blur(2px)";
+        document.getElementById("signin").style.filter = "blur(2px)";
+        document.documentElement.scrollTop = 0;
+        setTimeout(function() {
+            document.getElementById("load").style.display = "none";
+        }, 2000);
+        setTimeout(function() {
+            document.getElementById("userpage").style.display = "block";
+            document.getElementById("transac1").style.display = "block";
+            document.getElementById("login").style.display = "none";
+            document.getElementById("signin").style.display = "none";
+        }, 2100);
+
+    }
+    //search bar event
+    var ul = document.getElementById('names');
+    ul.onclick = function(event) {
+        var target = event.target;
+        document.getElementById("search").value = event.target.innerHTML;
+    };
+
+    function cancel() {
+        document.getElementById("sender2").style.display = "none";
+        document.getElementById("userpage").style.display = "block";
+    }
+
+    function success() {
+        swal({
+            title: "Sucess",
+            text: "Payment successful Redericting...",
+            icon: "success",
+            button: "ok",
+        });
+
+        setTimeout(function() {
+            document.getElementById("userpage").style.display = "block";
+            document.getElementById("sender2").style.display = "none";
+
+        }, 1000);
+    }
+
+    function highlight(x) {
+        x.style.borderColor = "#023e8a";
+    }
+
+    function regular(x) {
+        x.style.borderColor = "white";
+    }
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+
+    function message() {
+        swal({
+            title: "Sorry!!",
+            text: "This feature is under Development",
+            icon: "info",
+            button: "ok",
+        });
+    }
+
+    function logout() {
+        document.getElementById("userpage").style.display = "none";
+        document.getElementById("login").style.display = "block";
+        document.getElementById("login").style.filter = "none";
+    }
+</script>
+
+</html>
