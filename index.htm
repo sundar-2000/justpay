@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Justpay</title>
+    <title>Untitled</title>
     <meta name="viewport" content="width=device-width,maximum-scale=1,user-scalable=no">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
@@ -18,24 +18,22 @@
 
         body {
             background: #a0cbe3;
-            height: 98vh;
             background-repeat: no-repeat;
             background-size: auto;
-            overflow: hidden;
         }
 
-        #home {
-            position: absolute;
-            width: 95%;
-            height: 90%;
+        #home,#login,#signin {
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+
+        }
+        #home{
+             display:flex;
         }
 
         #tit {
-            position: absolute;
-            top: 10%;
-            left: 25vw;
-            height: 42px;
-            width: 175px;
             border-radius: 50px;
             background: #a0cbe3;
             box-shadow: 10px 10px 30px #88adc1,
@@ -43,41 +41,33 @@
             text-align: center;
             font-size: 15px;
             font-weight: bolder;
-            padding: 5px;
+            padding: 10px;
             color: #000000;
         }
 
         #container {
-            position: absolute;
-            height: 55vh;
-            width: 80%;
             font-size: 16px;
-            top: 175px;
-            left: 5%;
             border-radius: 50px;
             background: #a0cbe3;
             box-shadow: 20px 20px 60px #88adc1,
             -20px -20px 60px #b8e9ff;
             padding: 10px;
-            -ms-transform: translate(5%);
-            transform: translate(5%);
         }
 
         #signin1 {
-            position: absolute;
             left: 10%;
             color: #05668d;
+            display: inline-block;
+            justify-content: space-between;
         }
 
         #login1 {
-            position: absolute;
+            display: inline-block;
             right: 10%;
             color: #05668d;
         }
 
         #login {
-            position: absolute;
-            width: 80vw;
             padding: 10px;
         }
 
@@ -100,10 +90,20 @@
             -5px -5px 8px #a6d3ec;
         }
 
-        #blogin,
-        #send {
+        #blogin
+        {
+            border-radius: 20px;
+            padding: 10px;
+            width: 75px;
+            outline: none;
+            background: #023e8a;
+            color: #ffffff;
+            font-family: Georgia, serif;
+            text-align: center;
+        }
+        #send{
             position: absolute;
-            top: 250px;
+            top: 72vh;
             left: 50%;
             border-radius: 20px;
             padding: 10px;
@@ -116,15 +116,9 @@
             transform: translate(-50%, -50%);
         }
 
-        #send {
-            top: 75vh;
-        }
-
         #signin {
-            position: absolute;
-            width: 80%;
+            position: relative;
             padding: 20px;
-            height: 650px;
         }
 
         #bsignin {
@@ -212,7 +206,8 @@
         }
 
         #backuser {
-            left: 85vw;
+            left: 80vw;
+            top: 30px;
         }
 
         .sidenav {
@@ -234,7 +229,7 @@
             font-size: 25px;
             color: #818181;
             display: block;
-            transition: .5s;
+            transition: .3s;
         }
 
         .sidenav a:hover {
@@ -265,7 +260,7 @@
             font-style: italic;
             font-size: 13px;
             color: black;
-            width: 95%;
+            width: 90%;
             border-radius: 5px;
             word-wrap: break-word;
             height: 20px;
@@ -308,9 +303,9 @@
             color: black;
             width: 100px;
             height: 25px;
-            overflow: auto;
             border-radius: 5px;
             text-align: center;
+            overflow: auto;
         }
 
         #pay1,
@@ -332,7 +327,7 @@
             position: absolute;
             top: 100px;
             left: 30%;
-            border-radius: 20px;
+            border-radius: 10px;
             border: 1px solid #06d6a0;
             color: #000000;
             font-size: medium;
@@ -356,13 +351,9 @@
         }
 
         #loginbox,
-        #signinbox {
-            width: 75vw;
-            height: 350px;
-            position: absolute;
-            left: 50%;
-            top: 20%;
-            transform: translate(-45%, 25%);
+        #signinbox{
+            width: max-content;
+            padding: 20px;
             border-radius: 50px;
             background: #a0cbe3;
             box-shadow: 20px 20px 60px #88adc1,
@@ -370,29 +361,23 @@
         }
 
         #signinbox {
-            height: 75vh;
             overflow: auto;
-            transform: translate(-45%, -10%);
-            -ms-overflow-style: none;
             scrollbar-width: none;
+            padding: 30px;
         }
 
         #signinbox::-webkit-scrollbar {
             display: none;
         }
 
-        #logincontent,
-        #signincontent {
-            position: absolute;
-            left: 10vw;
-            top: 5%;
-        }
     </style>
 </head>
 
 <body>
     <article id="home">
-        <p id="tit" style="font-family: 'Comic Sans MS', cursive, sans-serif">Just Pay<br>&nbsp;&nbsp;&nbsp;-Go cashless...</p>
+     <br><br>
+    <p id="tit" style="font-family: 'Comic Sans MS', cursive, sans-serif">Just Pay<br>&nbsp;&nbsp;&nbsp;-Go cashless...</p>
+        <br><br><br>
         <div id="container">
             <ul>
                 <li>JustPay is a web payment app where you can pay without cash</li>
@@ -401,8 +386,8 @@
                 <li>Made with lots of love and efforts please don't spoil it</li>
                 <li>All amounts,accounts and transcations are JFF.Hence safe to create your account</li>
             </ul>
-            <p id="login1" onclick="login1() "><u><b>login</b></u></p>
-            <p id="signin1" onclick="signin1()"><u><b>signin</b></u></p>
+            <div  style="display: flex;justify-content: space-between;margin: 10px;"><p id="login1" onclick="login1() "><u><b>login  </b></u></p>
+            <p id="signin1" onclick="signin1()"><u><b>signin</b></u></p></div>
         </div>
     </article>
     <article id="login">
@@ -416,12 +401,16 @@
                 <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Password:</p>
                 <input id="lpswd" type="password" placeholder="password" onfocus="highlight(this)" onblur="regular(this)"><br>
                 <p id="lalert" style="font-weight: bold; color: red"></p>
-                <button id="blogin" onclick="login()"><b>Login</b></button>
+                <div  style="display: flex;justify-content: center;margin: 10px;">
+                    <br>
+                    <button id="blogin" onclick="login()"><b>Login</b></button>
+                    </div>
             </article>
         </article>
     </article>
     <article id="signin">
         <p style="text-align: center; font-family: 'Times New Roman', Times, serif"><b>SIGN UP</b></p>
+        <br><br>
         <article id="signinbox">
             <article id="signincontent">
                 <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Username:</p>
@@ -436,6 +425,7 @@
                 <input id="spswd" type="password" placeholder="password" onfocus="highlight(this)" onblur="regular(this)">
                 <p id="salert" style="font-weight: bold; color: red"></p><br>
                 <button id="bsignin" onclick="signin()"><b>Signin</b></button>
+                <br><br>
             </article>
         </article>
     </article>
@@ -461,7 +451,7 @@
     <article id="trans"> <br><br>
         <h1>
             <p style="text-align: center"><b>Transaction History</b>
-                <div id="backuser" style="font-size:30px" onclick="backuser()">&#8594;</div>
+                <div id="backuser" style="font-size:30px" onclick="backuser()"> &#8594;</div>
             </p>
         </h1> <br>
         <p id="info" style="text-align: center">
@@ -518,12 +508,12 @@
     var res, trans1, trans2, trans;
 
     function login1() {
-        document.getElementById("login").style.display = "block";
+        document.getElementById("login").style.display = "flex";
         document.getElementById("home").style.display = "none";
     }
 
     function signin1() {
-        document.getElementById("signin").style.display = "block";
+        document.getElementById("signin").style.display = "flex";
         document.getElementById("home").style.display = "none";
     }
 
@@ -647,10 +637,19 @@
         uer = 1;
         uname = document.getElementById("lusername").value || document.getElementById("susername").value;
         pname = document.getElementById("search").value;
-        if (uname == pname) {
+        if (uname == pname ) {
             swal({
                 title: "Ooops!!",
                 text: "Sender and receiver can't be the same",
+                icon: "warning",
+                button: "ok",
+            });
+            return 0;
+        }
+        if (pname=="" ) {
+            swal({
+                title: "Ooops!!",
+                text: "NO username",
                 icon: "warning",
                 button: "ok",
             });
@@ -690,6 +689,15 @@
 
 
         var pamnt = document.getElementById("payamnt").value;
+        if (pamnt=="" ) {
+            swal({
+                title: "Ooops!!",
+                text: "NO amount",
+                icon: "warning",
+                button: "ok",
+            });
+            return 0;
+        }
         var amnt = parseInt(pamnt);
         ubal = ubal - amnt;
         pbal = pbal + amnt;
@@ -845,7 +853,7 @@
 
     function logout() {
         document.getElementById("userpage").style.display = "none";
-        document.getElementById("login").style.display = "block";
+        document.getElementById("login").style.display = "flex";
         document.getElementById("login").style.filter = "none";
     }
 </script>
