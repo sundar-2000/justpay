@@ -2,27 +2,40 @@
 <html>
 
 <head>
-    <title>Justpay</title>
+    <meta charset="UTF-8">
+    <title>JustPay</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Benne&display=swap" rel="stylesheet">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sundar-2000.github.io/justpay/">
+    <meta property="og:title" content="JustPay">
+    <meta property="og:description" content="A mobile payment simulation app">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <!--font-awesome-->
+    <script src="https://kit.fontawesome.com/6b08127ac9.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width,maximum-scale=1,user-scalable=no">
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
+        *{
+            scroll-behavior: smooth;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
         #signin,
         #sender1,
         #sender2,
         #userpage,
-        #trans,
-        #login,
-        #load {
+        #trans{
             display: none;
         }
-
-        body {
-            background: #a0cbe3;
-            background-repeat: no-repeat;
-            background-size: auto;
-        }
-
-        #home,#login,#signin {
+        #home,#signin {
             align-items: center;
             justify-content: center;
             flex-direction: column;
@@ -32,182 +45,41 @@
         #home{
              display:flex;
         }
-
-        #tit {
-            border-radius: 50px;
-            background: #a0cbe3;
-            box-shadow: 10px 10px 30px #88adc1,
-            -10px -10px 30px #b8e9ff;
-            text-align: center;
-            font-size: 15px;
-            font-weight: bolder;
-            padding: 10px;
-            color: #000000;
-        }
-
-        #container {
-            font-size: 16px;
-            border-radius: 50px;
-            background: #a0cbe3;
-            box-shadow: 20px 20px 60px #88adc1,
-            -20px -20px 60px #b8e9ff;
-            padding: 10px;
-        }
-
-        #signin1 {
-            left: 10%;
-            color: #05668d;
-            display: inline-block;
+        #userpage{
+            flex-direction: column;
+            align-items: center;
             justify-content: space-between;
+            min-height: 100vh;
         }
-
-        #login1 {
-            display: inline-block;
-            right: 10%;
-            color: #05668d;
-        }
-
-        #login {
-            padding: 10px;
-        }
-
-        #lusername,
-        #lpswd,
-        #susername,
-        #spswd,
-        #saccno,
-        #sname,
-        #samnt {
-            color: #000000;
-            font-size: medium;
-            width: 200px;
-            height: 20px;
-            padding-left: 10px;
-            outline: none;
-            border-radius: 10px;
-            background: linear-gradient(145deg, #abd9f3, #90b7cc);
-            box-shadow: 5px 5px 8px #9ac3da,
-            -5px -5px 8px #a6d3ec;
-        }
-
-        #blogin
-        {
-            border-radius: 20px;
-            padding: 10px;
-            width: 75px;
-            outline: none;
-            background: #023e8a;
-            color: #ffffff;
-            font-family: Georgia, serif;
-            text-align: center;
+        #uamnt {
+            height: 10rem;
+            width: 10rem;
+            border-radius: 50%;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            background-color: #3A81F1;
+            color: #fff;
+            font-size: 1.25rem;
+            letter-spacing: 2px;
+            box-shadow: 0 5px 10px rgb(0,0,0,.75);
         }
         #send{
-            position: absolute;
-            top: 72vh;
-            left: 50%;
-            border-radius: 20px;
-            padding: 10px;
-            width: 75px;
-            outline: none;
-            background: #023e8a;
-            color: #ffffff;
-            font-family: Georgia, serif;
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+            padding: 0.5rem;
+            letter-spacing: 5px;
+            border-radius: 5px;
+            font-size: 1.25rem;
+            font-weight: 600;
         }
-
-        #signin {
-            position: relative;
-            padding: 20px;
-        }
-
-        #bsignin {
-            position: absolute;
-            left: 50%;
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-            border-radius: 20px;
-            padding: 10px;
-            width: 75px;
-            outline: none;
-            background: #023e8a;
-            color: #ffffff;
-            font-family: Georgia, serif;
-        }
-
-        #loader {
-            position: absolute;
-            left: 60%;
-            -ms-transform: translate(-45%, -45%);
-            transform: translate(-45%, -45%);
-            top: 60%;
-            width: 40px;
-            height: 40px;
-            margin: -75px 0 0 -75px;
-            border: 10px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 10px solid #3498db;
-            animation: spin 2s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        #load {
-            position: absolute;
-            top: 50%;
-            width: 90%;
-        }
-
-        #sender1,
-        #sender2,
-        .userpage,
-        .trans {
-            position: absolute;
-            height: 95%;
-            width: 90%;
-        }
-
-        #circle {
-            position: absolute;
-            height: 150px;
-            width: 150px;
-            border-radius: 50%;
-            align-items: center;
-            background: #ffffff;
-            left: 50%;
-            -ms-transform: translate(-50%);
-            transform: translate(-50%);
-            box-shadow: 0 0 5px #ff0000, 0 0 10px #0000ff;
-        }
-
-        #uamnt {
-            position: absolute;
-            top: 32px;
-            left: 50%;
-            -ms-transform: translate(-50%);
-            transform: translate(-50%);
-        }
-
         .transac1,
         #backuser {
-            position: absolute;
-            top: 50px;
-            left: 95%;
             cursor: pointer;
+            padding-right: 1rem;
         }
 
         #backuser {
-            left: 80vw;
-            top: 30px;
+           padding-right: 0;
+           padding-left: 1rem;
         }
 
         .sidenav {
@@ -224,16 +96,17 @@
         }
 
         .sidenav a {
+            cursor: pointer;
             padding: 8px 8px 8px 32px;
             text-decoration: none;
             font-size: 25px;
-            color: #818181;
+            color: #818181 !important;
             display: block;
             transition: .3s;
         }
 
         .sidenav a:hover {
-            color: #f1f1f1;
+            color: #f1f1f1 !important;
         }
 
         .sidenav .closebtn {
@@ -253,20 +126,23 @@
         }
 
         #ltrans li {
-            border: 2px solid #000000;
-            margin-top: -1px;
-            background-color: #f6f6f6;
-            padding: 3px;
+            border: 2px solid rgba(0,0,0,0.08);
+            padding: 1rem;
             font-style: italic;
-            font-size: 13px;
-            color: black;
-            width: 90%;
+            font-size: 1rem;
+            color: rgba(0,0,0,0.9);
             border-radius: 5px;
             word-wrap: break-word;
-            height: 20px;
             text-align: center;
-            font-weight: bold;
-            overflow: auto;
+            font-weight: 600;
+            margin: .5rem;
+            transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),
+                .3s box-shadow,
+                .3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+        }
+        #ltrans li:hover{
+            box-shadow: 0 10px 20px rgba(0,0,0,.12),
+              0 4px 8px rgba(0,0,0,.06);
         }
 
         #scrollbox {
@@ -289,157 +165,285 @@
         }
 
         #names {
-            position: relative;
-            margin: 2px;
-            display: none;
-            width: 100px;
-            padding: 2px;
+            padding: 0.25rem;
         }
 
         #names li {
-            border: 2px solid #000000;
+            border: 2px solid rgba(0, 0, 0, .5);
             background-color: #f6f6f6;
-            padding: 2px;
+            padding: 0.25rem;
             color: black;
-            width: 100px;
-            height: 25px;
             border-radius: 5px;
             text-align: center;
-            overflow: auto;
+            margin: 0.5rem;
+            cursor: pointer;
         }
-
-        #pay1,
-        #pay2 {
-            position: absolute;
-            top: 98px;
-            left: 65%;
-            border-radius: 20px;
-            padding: 5px;
-            width: 70px;
+        #input-box {
+            display: flex;
+            align-items: center;
+            max-width: 300px;
+            background: #fff;
+            border: 1px solid #a0a0a0;
+            border-radius: 4px;
+            padding-left: 0.5rem;
+            overflow: hidden;
+        }
+        #input-box .prefix {
+            font-weight: 300;
+            font-size: 14px;
+            color: #999;
+        }
+        #input-box input {
+            flex-grow: 1;
+            font-size: 14px;
+            background: #fff;
+            border: none;
             outline: none;
-            background: #023e8a;
-            color: #ffffff;
-            font-family: Georgia, serif;
+            padding: 0.5rem;
         }
-
-        #search,
-        #payamnt {
-            position: absolute;
-            top: 100px;
-            left: 30%;
-            border-radius: 10px;
-            border: 1px solid #06d6a0;
-            color: #000000;
-            font-size: medium;
-            width: 80px;
-            height: 20px;
-            padding-left: 10px;
+        #input-box:focus-within {
+            border-color: #777;
+        }
+        @keyframes short-press {
+	        0% {
+		    transform: scale(1);
+	        }
+	        50% {
+		    transform: scale(0.9);
+	        }
+	        100% {
+		    transform: scale(1);
+	        }
+        }
+ 
+        .hide {
+	        display: none;
+        }
+        .submit-button {
+	        display: block;
+	        font-family:  Helvetica, Arial, sans-serif;
+	        font-weight: 600;
+	        text-transform: uppercase;
+	        font-size: 0.75em;
+	        letter-spacing: 1px;
+	        height: 38px;
+	        width: 120px;
+	        line-height: 38px;
+	        overflow: hidden;
+	        background: #4dbecf;
+	        border-radius: 3px;
+	        box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
+	        border: 0;
+	        cursor: pointer;
+	        transition: all 0.3s ease;
+            outline: none !important;
+        }   
+        .submit-button:hover, .submit-button:focus {
+	        box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+        }
+        .submit-button.animated {
+	         animation: 0.75s short-press cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+        .submit-button > span {
+	        display: block;
+	        color: #fff;
+	        text-align: center;
+        }
+        .submit-button > span.pre-state-msg {
+	        transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+	        transition-delay: 0.75s;
+        }
+        .submit-button.state-1 .pre-state-msg {
+	        margin-top: -38px;
+        }
+        .submit-button.state-2 .pre-state-msg {
+	        margin-top: -76px;
+        }
+        #search{
             outline: none;
-            box-shadow: 0 0 5px #ff0000, 0 0 10px #0000ff;
+            margin: 0.25rem;
+            border: 1px solid #808080;
+            border-radius: 3px;
         }
-
-        #cancel {
-            position: absolute;
-            top: 250px;
-            left: 45%;
+        #fea-icon{
+            font-size: 2rem;
+            color: #0d6efd;
         }
-
-        #s2alert {
-            position: absolute;
-            top: 200px;
-            left: 30%;
-        }
-
-        #loginbox,
-        #signinbox{
-            width: max-content;
-            padding: 20px;
-            border-radius: 50px;
-            background: #a0cbe3;
-            box-shadow: 20px 20px 60px #88adc1,
-            -20px -20px 60px #b8e9ff;
-        }
-
-        #signinbox {
-            overflow: auto;
-            scrollbar-width: none;
-            padding: 30px;
-        }
-
-        #signinbox::-webkit-scrollbar {
-            display: none;
+        #uamnt::before{
+            content: "\f156";
+            font-family: "Font Awesome 5 Free";
         }
 
     </style>
 </head>
 
 <body>
-    <article id="home">
-     <br><br>
-    <p id="tit" style="font-family: 'Comic Sans MS', cursive, sans-serif">Just Pay<br>&nbsp;&nbsp;&nbsp;-Go cashless...</p>
-        <br><br><br>
-        <div id="container">
-            <ul>
-                <li>JustPay is a web payment app where you can pay without cash</li>
-                <li> Inspired from "PayPal" by "Elonmusk" and learned from "Agilan" </li>
-                <li>Any bug issues and improvisations are most welcome</li>
-                <li>Made with lots of love and efforts please don't spoil it</li>
-                <li>All amounts,accounts and transcations are JFF.Hence safe to create your account</li>
-            </ul>
-            <div  style="display: flex;justify-content: space-between;margin: 10px;"><p id="login1" onclick="login1() "><u><b>login  </b></u></p>
-            <p id="signin1" onclick="signin1()"><u><b>signin</b></u></p></div>
-        </div>
-    </article>
-    <article id="login">
-        <h1>
-            <p style="text-align: center; font-family: 'Times New Roman', Times, serif;font-size:20px"><b>LOGIN</b></p>
-        </h1>
-        <article id="loginbox">
-            <article id="logincontent">
-                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Username:</p>
-                <input id="lusername" placeholder="username" onfocus="highlight(this)" onblur="regular(this)">
-                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Password:</p>
-                <input id="lpswd" type="password" placeholder="password" onfocus="highlight(this)" onblur="regular(this)"><br>
-                <p id="lalert" style="font-weight: bold; color: red"></p>
-                <div  style="display: flex;justify-content: center;margin: 10px;">
-                    <br>
-                    <button id="blogin" onclick="login()"><b>Login</b></button>
+    <div id="home">
+        <nav class="navbar navbar-light fixed-top navbar-expand" style="background-color: #fff;box-shadow: 0 4px 16px rgba(0,0,0,0.25),
+        0 8px  32px rgba(0,0,0,0.25);">
+            <div class="container-fluid">
+                  <a class="navbar-brand" href="#" 
+                     style="font-family: 'Benne', serif;font-size: 2rem;color: #0d6efd;font-weight: 900;"> &nbsp;JustPay 
+                </a>
+              <div class="justify-content-end" id="navbarToggler">
+                <form class="d-flex">
+                    <a href="#login"><button class="btn btn-outline-primary" type="button">Login</button></a>
+                    &nbsp;&nbsp;<button class="btn btn-primary" onclick="signin1()" type="button">Signin</button>
+                  </form>
+              </div>
+            </div>
+          </nav> 
+          <div class="container col-xxl-8 px-4" style="min-height: 90vh;padding-top: 10rem;">
+            <div class="row align-items-center justify-content-center g-5 pb-5">
+              <div class="col-10 col-sm-8 col-lg-6">
+                <img src="pay.png" class="d-block mx-auto img-fluid" alt="justpay" width="700" height="500">
+              </div>
+              <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">JustPay</h1>
+                <h5 class="fw-bold lh-1 mb-3">Go cashless</h5>
+                <p class="col-lg-10 fs-4">Quickly and easily send,receive and request money online with single tap.</p>
+                <a href="#login"><button class="btn btn-primary fs-5"> Get started <i class="fas fa-arrow-circle-right"></i></button></a>
+              </div>
+            </div>
+          </div>
+        
+          <div id="login" class="container col-xl-10 col-xxl-8 px-4">
+            <div class="row align-items-center g-lg-5 py-5">
+              <div class="col-lg-7 text-center text-lg-start">
+                <h1 class="display-4 fw-bold lh-1 mb-3">Login</h1>
+                <p class="col-lg-10 fs-4">Login into your account to make seamless transactions on the go...</p>
+              </div>
+              <div class="col-md-10 mx-auto col-lg-5">
+                <form class="p-4 p-md-5 border rounded-3 bg-light">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="lusername" placeholder="username">
+                    <label for="floatingInput">Username</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="lpswd" placeholder="password">
+                    <label for="floatingPassword">Password</label>
+                  </div>
+                  <button class="w-100 btn btn-lg btn-primary" type="button" onclick="login()">
+                    <span id="login-spinner" class="spinner-border spinner-border-sm" style="display: none;"></span> Login</button>
+                  <p id="lalert" style="font-weight: bold; color: red;margin-top: 1rem;"></p>
+                  <hr class="my-4">
+                  <div style="text-align: center;">
+                  <span class="text-muted">Don't have an account ? <a  href="#" onclick="signin1()">Signin</a></span>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="container px-4 py-5" id="feature">
+            <h2 class="pb-2 border-bottom">Features</h2>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+              <div class="col d-flex align-items-start">
+                <div>
+                   <div id="fea-icon"><i class="fas fa-tachometer-alt"></i></div>
+                  <h4 class="fw-bold mb-0">Faster Payments</h4>
+                  <p>Transactions made as fast as light.</p>
+                </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <div>
+                        <div id="fea-icon"> <i class="fas fa-rupee-sign"></i></div>
+                      <h4 class="fw-bold mb-0">Lower Fee</h4>
+                      <p>Lower cost per transaction.</p>
                     </div>
-            </article>
-        </article>
-    </article>
-    <article id="signin">
-        <p style="text-align: center; font-family: 'Times New Roman', Times, serif"><b>SIGN UP</b></p>
-        <br><br>
-        <article id="signinbox">
-            <article id="signincontent">
-                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Username:</p>
-                <input id="susername" placeholder="username" onfocus="highlight(this)" onblur="regular(this)">
-                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Name:</p>
-                <input id="sname" placeholder="name" onfocus="highlight(this)" onblur="regular(this)">
-                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Account Number:</p>
-                <input id="saccno" type="number" placeholder="accno" onfocus="highlight(this)" onblur="regular(this)">
-                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Amount:</p>
-                <input id="samnt" type="number" placeholder="amnt" onfocus="highlight(this)" onblur="regular(this)">
-                <p style="font-family: 'Comic Sans MS', cursive, sans-serif">Password:</p>
-                <input id="spswd" type="password" placeholder="password" onfocus="highlight(this)" onblur="regular(this)">
-                <p id="salert" style="font-weight: bold; color: red"></p><br>
-                <button id="bsignin" onclick="signin()"><b>Signin</b></button>
-                <br><br>
-            </article>
-        </article>
-    </article>
-    <article id="userpage" class="userpage"><br>
-        <b><h1><p id="uname" style="text-align: center; font-family: Arial, Helvetica, sans-serif"></p></h1></b>
-        <br><br>
-        <p style="text-align: center"><b>Your Wallet</b></p>
-        <div id="circle">
-            <p id="uamnt" style="font-size: 30px;text-align: center"></p>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <div>
+                        <div id="fea-icon"> <i class="fas fa-lock"></i></div>
+                      <h4 class="fw-bold mb-0">100% secure</h4>
+                      <p>Your security is our service.</p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <div>
+                        <div id="fea-icon"><i class="fas fa-hand-sparkles"></i></div>
+                      <h4 class="fw-bold mb-0">Easy to Use</h4>
+                      <p>User friendly environment.</p>
+                    </div>
+                </div>
+                
+          </div>
         </div>
-        <button id="send" onclick="send()">Pay</button>
-        <div id="transac1" class="transac1" style="font-size:30px" onclick="openNav()">&#9776;
+        <div id="footer" style="padding: 1.5rem; font-size: 1.5rem;color: #000;font-weight: 600;">
+           <div>Made with <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">
+            <i style ="color:#602C50;"class="fab fa-bootstrap"></i></a> by Sundar 
+            <a href="https://github.com/sundar-2000/justpay"><i class="fab fa-github" style="color: #000;"></i></a></div>
         </div>
-    </article>
+    </div>
+    <div id="signin" class="container col-xl-10 col-xxl-8 px-4">
+        <div class="row align-items-center g-lg-5 py-5">
+          <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 mb-3">Signin</h1>
+            <p class="col-lg-10 fs-4">Signin into join the justpay community and make your first transaction for free!!</p>
+          </div>
+          <div class="col-md-10 mx-auto col-lg-5">
+            <form class="p-4 p-md-5 border rounded-3 bg-light">
+                <div 
+                style="font-family: 'Benne', serif;font-size: 2rem;color: #0d6efd;font-weight: 900;margin-bottom: 0.25rem;text-align: center;">
+                JustPay</div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="susername" placeholder="Username">
+                <label for="floatingInput">Username</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="sname" placeholder="Name">
+                <label for="floatingInput">Name</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="saccno" placeholder="Account Number">
+                <label for="floatingInput">Account Number</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="samnt" placeholder="Amount">
+                <label for="floatingInput">Amount</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="spswd" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+              </div>
+              <button class="w-100 btn btn-lg btn-primary" type="button" onclick="signin()">
+                <span id="signin-spinner" class="spinner-border spinner-border-sm" style="display: none;"></span> Signin</button>
+              <p id="salert" style="font-weight: bold; color: red;margin-top: 1rem;"></p>
+              <hr class="my-4">
+              <div style="text-align: center;">
+              <span class="text-muted">Already have an account ? <a  href="#" onclick="$('#signin').hide();$('#home').show();">Login</a></span>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    <div id="userpage" class="userpage" style="padding: 2rem;">
+        <div style="display: flex;flex-direction: row;align-items: baseline;justify-content: space-evenly;width: 100%;font-weight: 800;">
+            <div id="uname" style="text-align: center; font-family: 'Benne', serif;flex:1;font-size: 1.75rem;"></div>
+            <div id="transac1" class="transac1" style="font-size:1.75rem" onclick="openNav()">&#9776;</div>
+        </div>
+        <div style="display: flex;flex-direction: column;align-items: center;">
+            <div style="padding: 0.5rem;font-size: 1.75rem; color: rgba(0,0,0,0.75);"><b>Your Wallet</b></div>
+            <div id="uamnt" style="font-weight: 900;"></div>
+        </div>
+        <button id="send" onclick="send()" class="btn btn-outline-primary"><i class="fas fa-rupee-sign">Pay</i></button>
+        <div class="modal fade" id="reciever" data-bs-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Select Reciepient</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <input placeholder="Search Reciepient" onkeyup="filter()" type="text" id="search" autocomplete="off">
+                  <br><br>
+                  <ul style="height: 50vh; overflow-y: scroll;" class="list-group" id="names">
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div> 
+    </div>
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a onclick="transac(),closeNav()">Transactions</a>
@@ -448,38 +452,32 @@
         <br><br><br>
         <a>Done by Sundar</a>
     </div>
-    <article id="trans"> <br><br>
-        <h1>
-            <p style="text-align: center"><b>Transaction History</b>
-                <div id="backuser" style="font-size:30px" onclick="backuser()"> &#8594;</div>
-            </p>
-        </h1> <br>
+    <div id="trans"> <br><br>
+        <div style="display: flex;flex-direction: row;justify-content: space-around;align-items: center;font-size: 1.5rem;">
+            <div id="backuser" style="font-size:30px" onclick="backuser()"><i class="fas fa-arrow-circle-left"></i></div>
+            <div style="text-align: center;flex: 1;"><b>Transaction History</b></div>
+        </div> 
         <p id="info" style="text-align: center">
-            <ul id="ltrans" style=" list-style-type: none;">
+            <ul id="ltrans" style=" list-style-type: none;padding: 1.25rem;">
             </ul>
         </p>
-    </article>
-    <article id="sender1"><br>
-        <h1>
-            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; text-align: center">Search For Recipients </p>
-        </h1>
-        <input id="search" onkeyup="filter()" placeholder="search">
-        <button id="pay1" onclick="pay1()">proceed</button>
-        <p id="sugg">Suggested Users:</p>
-        <div id="scrollbox">
-            <ul id="names" style=" list-style-type: none;">
-            </ul>
-        </div>
-    </article>
-    <article id="sender2">
-        <input id="payamnt" placeholder="Amount" type="number">
-        <button id="pay2" onclick="pay2()">pay</button><br>
+    </div>
+    <div id="sender2"  style="flex-direction: column;align-items: center;justify-content: space-evenly;min-height: 100vh;">
+        <h3>Enter the Amount</h3>
+        <div id="input-box">
+            <span class="prefix"><i class="fas fa-rupee-sign"></i></span>
+            <input id="payamnt" type="number" placeholder="Enter Amount"/>
+          </div>
+          <button id="pay2"  class="submit-button state-0">
+              <span class="pre-state-msg">Pay <i class="fas fa-paper-plane"></i></span>
+              <span class="current-state-msg hide">Processing...</span>
+              <span class="done-state-msg hide">Done!</span>
+            </button>
         <p id="s2alert" style="text-decoration: underline ;font-weight: bold; color: red"></p>
-        <p id="cancel" onclick="cancel()" style="text-decoration: underline ;font-weight: bold; color: red"> &#10008;cancel</p>
-    </article>
-    <article id="load">
-        <div id="loader"></div>
-    </article>
+        <button id="cancel" onclick="cancel()" class="btn btn-outline-danger">
+            <i class="far fa-times-circle"> cancel</i>
+        </button>
+    </div>
 </body>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
@@ -506,19 +504,16 @@
 <script>
     var db = firebase.database();
     var res, trans1, trans2, trans;
-
-    function login1() {
-        document.getElementById("login").style.display = "flex";
-        document.getElementById("home").style.display = "none";
-    }
-
+    var modal;
     function signin1() {
+        jQuery('html,body').animate({scrollTop:0},0);
         document.getElementById("signin").style.display = "flex";
         document.getElementById("home").style.display = "none";
     }
 
 
     function signin() {
+        $("#signin-spinner").show();
         var name = document.getElementById("sname").value;
         var accno = document.getElementById("saccno").value;
         var amnt = parseInt(document.getElementById("samnt").value);
@@ -528,6 +523,7 @@
         if (accno.length < 1 || name.length < 1 || amnt.length < 1 || uname.length < 1) {
             document.getElementById("salert").innerText = "Please fill all the fields";
             err = 1;
+            $("#signin-spinner").hide();
         }
         db.ref("users").once('value', function(s) {
             if (s.hasChild(uname)) {
@@ -535,7 +531,7 @@
                 err = 1;
             }
             if (pswd.length <= 5) {
-                document.getElementById("salert").innerHTML = "Use a strong password";
+                document.getElementById("salert").innerHTML = "Use a stronger password";
                 err = 1;
             }
 
@@ -543,7 +539,7 @@
                 document.getElementById("salert").innerText = "Bulk amount can't be deposited online ";
                 err = 1;
             }
-
+            $("#signin-spinner").hide();
             if (err == 0) {
                 db.ref('users/' + uname).set({
                     name: name,
@@ -551,9 +547,7 @@
                     pswd: pswd,
                     bal: amnt,
                     trans: 0,
-
                 });
-
                 load();
                 db.ref("users/" + uname + "/bal").on("value", function(s) {
                     document.getElementById("uamnt").innerHTML = s.val();
@@ -572,6 +566,7 @@
 
 
     function login() {
+        $("#login-spinner").show();
         var pswd = document.getElementById("lpswd").value;
         var uname = document.getElementById("lusername").value;
         db.ref("users/" + uname + "/pswd").on("value", function(s) {
@@ -591,52 +586,58 @@
                 });
             } else
                 document.getElementById("lalert").innerHTML = "Incorrect username or password";
+                $("#login-spinner").hide();
         }, 1000);
     }
-
-    function send() {
-        document.getElementById("userpage").style.display = "none";
-        document.getElementById("sender1").style.display = "block";
-        document.getElementById("names").innerHTML = "";
-        //looping through users
+    var users=[];
+    var index=0;
         var query = db.ref("users").orderByKey();
         query.once("value")
             .then(function(snapshot) {
                 snapshot.forEach(function(childSnapshot) {
-
-                    var key = childSnapshot.key;
-                    var x = document.createElement("li");
-                    var t = document.createTextNode(key);
-                    x.appendChild(t);
-                    document.getElementById("names").appendChild(x);
+                    users[index] = childSnapshot.key;
+                    index++;
                 });
             });
+    function send() {
+        uname = document.getElementById("lusername").value || document.getElementById("susername").value;
+        modal = new bootstrap.Modal(document.getElementById('reciever'));
+        $('#search').value = "";
+        modal.show();
+        var txt="";
+        document.getElementById("names").innerHTML = "";
+        //looping through users
+        for (i in users) {
+            if(users[i].toUpperCase()!=uname.toUpperCase())
+            {
+                    txt+=(`<li class="list-group-item" href="#" onclick='pay1("${users[i]}")'>${users[i]}</li>`);
+            }
+        }
+        document.getElementById("names").innerHTML = txt;
+         
     }
     //filtering search results
     function filter() {
-
-        var input, filter, li, i, txt;
+        var input, filter,i, txt="";
         input = document.getElementById("search");
         filter = input.value.toUpperCase();
-        li = document.getElementById("names").getElementsByTagName("li");
-
-        for (i = 0; i < li.length; i++) {
-            document.getElementById("names").style.display = "block";
-            txt = li[i].textContent || li[i].innerText;
-            if (txt.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "block";
-            } else {
-                li[i].style.display = "none";
+        for (i in users) {
+            if(users[i].toUpperCase()!=uname.toUpperCase())
+            {
+                if(users[i].toUpperCase().indexOf(filter) > -1){
+                    txt+=(`<li class="list-group-item" href="#" onclick='pay1("${users[i]}")'>${users[i]}</li>`);
+                }
             }
         }
+        document.getElementById("names").innerHTML = txt;
     }
     var ubal, pbal, uname, pname, utrans, ptrans, uer;
 
     //getting recipient username
-    function pay1() {
+    function pay1(x) {
         uer = 1;
         uname = document.getElementById("lusername").value || document.getElementById("susername").value;
-        pname = document.getElementById("search").value;
+        pname = x;
         if (uname == pname ) {
             swal({
                 title: "Ooops!!",
@@ -646,7 +647,7 @@
             });
             return 0;
         }
-        if (pname=="" ) {
+        if (pname=='') {
             swal({
                 title: "Ooops!!",
                 text: "NO username",
@@ -655,18 +656,15 @@
             });
             return 0;
         }
-        document.getElementById("s2alert").innerHTML = "";
         db.ref("users").once('value', function(s) {
             if (!s.hasChild(pname)) {
 
                 uer = 0;
             }
         });
-
-
-
-        document.getElementById("sender1").style.display = "none";
-        document.getElementById("sender2").style.display = "block";
+        modal.hide();
+        document.getElementById("userpage").style.display = "none";
+        document.getElementById("sender2").style.display = "flex";
         db.ref("users/" + uname + "/bal").on("value", function(s) {
             ubal = parseInt(s.val());
         });
@@ -683,22 +681,34 @@
 
     }
 
-
+    //animate pay
+    const button   = document.querySelector('.submit-button'),
+      stateMsg = document.querySelector('.pre-state-msg');
+      const updateButtonMsg = function() {
+        button.classList.add('state-1', 'animated');
+        setTimeout(pay2, 2000);
+        };
+    const finalButtonMsg = function() {
+        button.classList.add('state-2');
+    };
+    const setInitialButtonState = function() {
+    button.classList.remove('state-1', 'state-2', 'animated');
+    };
+    button.addEventListener('click', updateButtonMsg);
     //paying function
     function pay2() {
-
-
         var pamnt = document.getElementById("payamnt").value;
-        if (pamnt=="" ) {
+        var amnt = parseInt(pamnt)||pamnt;
+        if (!pamnt || pamnt<=0) {
             swal({
                 title: "Ooops!!",
-                text: "NO amount",
+                text: "Not a valid amount",
                 icon: "warning",
                 button: "ok",
             });
+            setInitialButtonState();
             return 0;
         }
-        var amnt = parseInt(pamnt);
         ubal = ubal - amnt;
         pbal = pbal + amnt;
 
@@ -708,14 +718,18 @@
         var date = d.toDateString();
 
         if (uer == 0)
-            document.getElementById("s2alert").innerHTML = "No User Found";
-
+            {
+                document.getElementById("s2alert").innerHTML = "No User Found";
+                setInitialButtonState();
+            }
 
         else if (ubal < 10)
+        {
             document.getElementById("s2alert").innerHTML = "Need Minimum Balance";
-
+            setInitialButtonState();
+        }
         else {
-
+            finalButtonMsg();
             setTimeout(function() {
                 db.ref('users/' + uname).update({
 
@@ -729,13 +743,11 @@
                     [pkey]: uname + " gave you Rs" + amnt + " on " + date,
                     trans: parseInt(ptrans + 1),
                 });
+                success();
+                setInitialButtonState();
             }, 1000);
-            success();
-
+            
         }
-
-
-
     }
 
 
@@ -767,15 +779,19 @@
 
             }
         }
-        if (trans == 0) {
-            document.getElementById("info").innerHTML = "no transactions available";
+        else if (trans <= 0) {
+                    key="No transactions available"
+                    var x = document.createElement("li");
+                    var t = document.createTextNode(key);
+                    x.appendChild(t);
+                    document.getElementById("ltrans").appendChild(x);
         }
 
     }
 
     //back to userpage
     function backuser() {
-        document.getElementById("userpage").style.display = "block";
+        document.getElementById("userpage").style.display = "flex";
         document.getElementById("trans").style.display = "none";
 
     }
@@ -783,21 +799,11 @@
 
     //loader function
     function load() {
-
-        document.getElementById("load").style.display = "block";
-        document.getElementById("login").style.filter = "blur(2px)";
-        document.getElementById("signin").style.filter = "blur(2px)";
-        document.documentElement.scrollTop = 0;
-        setTimeout(function() {
-            document.getElementById("load").style.display = "none";
-        }, 2000);
-        setTimeout(function() {
-            document.getElementById("userpage").style.display = "block";
+            document.getElementById("userpage").style.display = "flex";
             document.getElementById("transac1").style.display = "block";
-            document.getElementById("login").style.display = "none";
+            document.getElementById("home").style.display = "none";
             document.getElementById("signin").style.display = "none";
-        }, 2100);
-
+            document.documentElement.scrollTop = 0;
     }
     //search bar event
     var ul = document.getElementById('names');
@@ -808,7 +814,7 @@
 
     function cancel() {
         document.getElementById("sender2").style.display = "none";
-        document.getElementById("userpage").style.display = "block";
+        document.getElementById("userpage").style.display = "flex";
     }
 
     function success() {
@@ -820,7 +826,7 @@
         });
 
         setTimeout(function() {
-            document.getElementById("userpage").style.display = "block";
+            document.getElementById("userpage").style.display = "flex";
             document.getElementById("sender2").style.display = "none";
 
         }, 1000);
