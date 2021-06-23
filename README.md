@@ -4,7 +4,7 @@
   <img src="preview.PNG" style="width: 50vw;margin: 10px">
 </p>
 
-### View : https://sundar-2000.github.io/justpay/
+### [View App](https://sundar-2000.github.io/justpay/)
  
  ###  Used :
   <li>Firebase RTD</li>
